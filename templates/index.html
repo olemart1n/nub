@@ -1,0 +1,30 @@
+{{ define "title" }}Home — nub global{{ end }} {{define "scripts"}}
+
+<script defer>
+  window.addEventListener("DOMContentLoaded", () => {
+    const inputElement = document.querySelector('input[type="file"]');
+    if (window.FilePond) {
+      FilePond.create(inputElement);
+    } else {
+      console.warn("FilePond didn’t load yet.");
+    }
+  });
+</script>
+{{end}} {{ define "content" }}
+
+<h1>Ancient Places</h1>
+<ul>
+  {{ range .Places }}
+  <li>
+    <h2>{{ .Name }}</h2>
+    <p>{{ .Description }}</p>
+    <a href="/place/{{ .ID }}">Explore</a>
+  </li>
+  {{ else }}
+  <p>No places submitted yet.</p>
+  {{ end }}
+</ul>
+<div>
+  <input type="file" name="file" />
+</div>
+{{ end }}
