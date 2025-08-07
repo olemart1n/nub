@@ -1,3 +1,15 @@
+plan
+
+1. Set up Postgres
+
+2. Make users table & login/signup pages. Just plain HTML forms + bcrypt hashing.
+
+3. Integrate secure Bunny.net direct upload.
+
+4. Save uploaded posts in DB (title, location, tags).
+
+5. Build profile pages, comments, and search last.
+
 ### Guiding principles for naming handler files..
 
 1. Group by feature or domain, not by HTTP method.
@@ -44,7 +56,7 @@ brew services start postgresql@17
 
 ---
 
-_posts_
+**posts**
 Column Type Notes
 
 id SERIAL PK
@@ -54,13 +66,13 @@ location TEXT Separate input field
 image_url TEXT Bunny.net CDN URL
 created_at TIMESTAMP
 
-_tags_
+**tags**
 Column Type Notes
 
 id SERIAL PK
 name TEXT UNIQUE
 
-_users_
+**users**
 Column Type Notes
 
 id SERIAL PK
@@ -68,13 +80,13 @@ username TEXT UNIQUE Required for login
 password_hash TEXT Store hashed password, never plain text
 created_at TIMESTAMP
 
-_post_tags_
+**post_tags**
 Column Type Notes
 
 post_id INT FK → posts.id
 tag_id INT FK → tags.id
 
-_comments_
+**comments**
 Column Type Notes
 
 id SERIAL PK
@@ -85,9 +97,11 @@ created_at TIMESTAMP
 
 ENVIRONMENT VARIABLES
 
-BUNNY_STORAGE_ZONE=
+```
+BUNNY_STORAGE_ZONE=nubglobal
 BUNNY_STORAGE_HOST=
 BUNNY_UPLOAD_KEY=
 BUNNY_PULL_ZONE=
 
 DATABASE_URL=
+```
