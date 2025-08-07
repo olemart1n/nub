@@ -1,0 +1,15 @@
+{{extends "/layouts/index.jet"}} {{block documentBody()}}
+<h2>Sign Up</h2>
+<form hx-post="/new-user" hx-target="#signup-msg" hx-swap="innerHTML" class="flex w-fit flex-col p-3 gap-2">
+  <div>
+  <label>Username</label>
+  <input type="text" class="dark:bg-slate-200 p-1 px-3 rounded-sm dark:text-black " name="username" required />
+  </div>
+  <div>
+  <label class="w-1/2">Password</label>
+  <input type="password" class="dark:bg-slate-200 p-1 px-3 rounded-sm dark:text-black " name="password" required />
+  </div>
+  <button type="submit" class="py-2 px-3 text-lg text-center focus:border border-slate-500 cursor-pointer dark:bg-yellow-500 rounded-sm">Sign Up</button>
+</form>
+<div id="signup-msg"></div>
+{{end}}

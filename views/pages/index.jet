@@ -1,0 +1,4 @@
+{{extends "/layouts/index.jet"}} {{block documentBody()}}
+<h1>Welcome to Nub Global</h1>
+<p>This is the homepage content.</p>
+{{end}}

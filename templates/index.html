@@ -1,30 +1,30 @@
-{{ define "title" }}Home — nub global{{ end }} {{define "scripts"}}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>nub.global — Ancient Places</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/output.css" />
+    <link rel="stylesheet" href="/assets/css/filepond.css" />
+    <link rel="icon" href="data:," />
+    <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
+    <script src="/assets/js/filepond.js"></script>
+    <script src="/assets/js/uploader.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Nub Global</a>
+        <a href="/signup">Signup</a>
+      </nav>
+    </header>
 
-<script defer>
-  window.addEventListener("DOMContentLoaded", () => {
-    const inputElement = document.querySelector('input[type="file"]');
-    if (window.FilePond) {
-      FilePond.create(inputElement);
-    } else {
-      console.warn("FilePond didn’t load yet.");
-    }
-  });
-</script>
-{{end}} {{ define "content" }}
+    <main>
+      <section id="swap-section"></section>
+    </main>
 
-<h1>Ancient Places</h1>
-<ul>
-  {{ range .Places }}
-  <li>
-    <h2>{{ .Name }}</h2>
-    <p>{{ .Description }}</p>
-    <a href="/place/{{ .ID }}">Explore</a>
-  </li>
-  {{ else }}
-  <p>No places submitted yet.</p>
-  {{ end }}
-</ul>
-<div>
-  <input type="file" name="file" />
-</div>
-{{ end }}
+    <footer>
+      <p>© Nub Global — Preserving the Past</p>
+    </footer>
+  </body>
+</html>
