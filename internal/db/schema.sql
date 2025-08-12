@@ -13,8 +13,13 @@ CREATE TABLE posts (
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
     title TEXT NOT NULL,
     location TEXT,
-    image_url TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT now()
+);
+
+CREATE TABLE images (
+  id SERIAL PRIMARY KEY,
+  post_id INT REFERENCES posts(id) ON DELETE CASCADE,
+  image_url TEXT NOT NULL
 );
 
 -- Tags

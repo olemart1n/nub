@@ -13,6 +13,7 @@ import (
 )
 
 func Router(db *db.DB, views *jet.Set, envConfig config.EnvConfig) *mux.Router {
+
 	r := mux.NewRouter()
 	r.Handle("/", middleware.Authenticate(ViewIndex(views))).Methods("GET")
 	r.Handle("/login-handler", LoginHandler(db)).Methods("POST")
@@ -21,7 +22,10 @@ func Router(db *db.DB, views *jet.Set, envConfig config.EnvConfig) *mux.Router {
 	r.Handle("/login", ViewLogin(views)).Methods("GET")
 	r.Handle("/sign-handler", bunny.SignHandler(envConfig)).Methods("GET")
 
-	// HTMX REQUEST
+	r.Handle("/upload", middleware.Authenticate(ViewUpload(views))).Methods("GET")
+
+	r.Handle("/create-post", middleware.Authenticate(bunny.UploadImages(envConfig, FormCreatePost(db)))).Methods("POST")
+
 	r.Handle("/new-user", HxCreateUser(db, views)).Methods("POST")
 	// Serve static files at /static/
 	staticFileDirectory := http.Dir("assets/")

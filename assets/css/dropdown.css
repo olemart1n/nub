@@ -1,0 +1,28 @@
+.dropdown-content {
+  margin-top: 14px;
+  display: none; /* Hidden by default */
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  max-height: 10rem;
+  overflow-y: scroll;
+}
+
+.search-input {
+  width: calc(100% - 16px);
+}
+
+.dropdown-content .option {
+  padding: 6px 6px;
+  display: block;
+  z-index: 2;
+}
+
+.dropdown-content .option:hover {
+  background-color: #fcf;
+}
+
+/*.dropdown:hover .dropdown-content {
+  display: block;
+} */

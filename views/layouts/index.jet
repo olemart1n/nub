@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="/assets/css/filepond.css" />
     <link rel="icon" href="data:," />
     <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
-    <script src="/assets/js/filepond.js"></script>
-    <script src="/assets/js/uploader.js"></script>
+    {{block head()}}{{end}}
   </head>
   <body class="text-slate-100">
     <header>
@@ -23,7 +22,6 @@
       </nav>
     </header>
     <main>
-      <h1>Layout is working</h1>
       {{block documentBody()}}{{end}}
       <section id="swap-section"></section>
     </main>

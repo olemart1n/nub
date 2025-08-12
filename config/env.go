@@ -9,11 +9,12 @@ import (
 )
 
 type EnvConfig struct {
-	StorageZone string
-	Hostname    string
-	UploadKey   string
-	PullZone    string
-	DatabaseURL string
+	StorageRegion           string
+	StorageZone             string
+	StoragePassword         string
+	StoragePasswordReadOnly string
+	PullZone                string
+	DatabaseURL             string
 }
 
 func LoadEnvConfig() EnvConfig {
@@ -23,11 +24,12 @@ func LoadEnvConfig() EnvConfig {
 	}
 
 	envs := EnvConfig{
-		StorageZone: os.Getenv("BUNNY_STORAGE_ZONE"),
-		Hostname:    os.Getenv("BUNNY_STORAGE_HOST"),
-		UploadKey:   os.Getenv("BUNNY_UPLOAD_KEY"),
-		PullZone:    os.Getenv("BUNNY_PULL_ZONE"),
-		DatabaseURL: os.Getenv("DATABASE_URL"),
+		StorageRegion:           os.Getenv("BUNNY_STORAGE_REGION"),
+		StorageZone:             os.Getenv("BUNNY_STORAGE_ZONE"),
+		StoragePassword:         os.Getenv("BUNNY_STORAGE_PASSWORD"),
+		StoragePasswordReadOnly: os.Getenv("BUNNY_STORAGE_PASSWWORD_READ_ONLY"),
+		PullZone:                os.Getenv("BUNNY_PULL_ZONE"),
+		DatabaseURL:             os.Getenv("DATABASE_URL"),
 	}
 
 	return envs

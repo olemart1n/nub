@@ -56,44 +56,50 @@ brew services start postgresql@17
 
 ---
 
-**posts**
-Column Type Notes
+-- USERS table stays the same
+CREATE TABLE users (
+id SERIAL PRIMARY KEY,
+username TEXT UNIQUE NOT NULL,
+password_hash TEXT NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-id SERIAL PK
-user_id INT FK → users.id Author
-title TEXT User title for image
-location TEXT Separate input field
-image_url TEXT Bunny.net CDN URL
-created_at TIMESTAMP
+-- POSTS table: remove image_url
+CREATE TABLE posts (
+id SERIAL PRIMARY KEY,
+user_id INT REFERENCES users(id) ON DELETE CASCADE,
+title TEXT NOT NULL,
+location TEXT,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-**tags**
-Column Type Notes
+-- IMAGES table: new
+CREATE TABLE images (
+id SERIAL PRIMARY KEY,
+post_id INT REFERENCES posts(id) ON DELETE CASCADE,
+image_url TEXT NOT NULL
+);
 
-id SERIAL PK
-name TEXT UNIQUE
+-- TAGS table stays the same
+CREATE TABLE tags (
+id SERIAL PRIMARY KEY,
+name TEXT UNIQUE NOT NULL
+);
 
-**users**
-Column Type Notes
+-- POST_TAGS table stays the same
+CREATE TABLE post_tags (
+post_id INT REFERENCES posts(id) ON DELETE CASCADE,
+tag_id INT REFERENCES tags(id) ON DELETE CASCADE
+);
 
-id SERIAL PK
-username TEXT UNIQUE Required for login
-password_hash TEXT Store hashed password, never plain text
-created_at TIMESTAMP
-
-**post_tags**
-Column Type Notes
-
-post_id INT FK → posts.id
-tag_id INT FK → tags.id
-
-**comments**
-Column Type Notes
-
-id SERIAL PK
-post_id INT FK → posts.id
-user_id INT FK → users.id Null allowed for guest comments if needed
-content TEXT
-created_at TIMESTAMP
+-- COMMENTS table stays the same
+CREATE TABLE comments (
+id SERIAL PRIMARY KEY,
+post_id INT REFERENCES posts(id) ON DELETE CASCADE,
+user_id INT REFERENCES users(id) ON DELETE SET NULL,
+content TEXT NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 ENVIRONMENT VARIABLES
 

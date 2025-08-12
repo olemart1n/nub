@@ -18,7 +18,7 @@ func ViewIndex(views *jet.Set) http.HandlerFunc {
 
 		vars := make(jet.VarMap)
 		vars.Set("title", "Nub Global Homepage")
-		userID := r.Context()
+		userID := r.Context().Value("userID").(string)
 		vars.Set("userID", userID)
 		err = tmpl.Execute(w, vars, nil)
 		if err != nil {

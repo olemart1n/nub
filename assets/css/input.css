@@ -1,9 +1,11 @@
+@import url("dropdown.css");
 @import "tailwindcss";
+
 :root {
   color-scheme: light dark;
 }
 body {
-  background-color: light-dark(#fff, #444);
+  background-color: light-dark(#fff, #1c1d1f);
   font-family: system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.5;
@@ -12,27 +14,4 @@ body {
   display: grid;
   grid-template-rows: 10% 1fr auto;
   height: 100dvh;
-}
-
-.form__field {
-  font-family: inherit;
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid #888; /* assuming $gray = #888 */
-  outline: 0;
-  font-size: 1.3rem;
-  color: #fff; /* assuming $white = #fff */
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
-}
-
-.form__field::placeholder {
-  color: transparent;
-}
-
-.form__field:placeholder-shown ~ .form__label {
-  font-size: 1.3rem;
-  cursor: text;
-  top: 20px;
 }
