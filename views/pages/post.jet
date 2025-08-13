@@ -1,0 +1,4 @@
+
+{{extends "/layouts/index.jet"}} {{block documentBody()}}
+<h1>{{.Title}}</h1>
+{{end}}

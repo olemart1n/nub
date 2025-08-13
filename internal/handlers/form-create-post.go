@@ -13,26 +13,16 @@ import (
 func FormCreatePost(db *db.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		imageURLsRAW := r.Context().Value(contextkeys.ImageURLsKey)
-		imageURLs, ok := imageURLsRAW.([]string)
-		if !ok {
-			fmt.Println("!ok is triggered")
-			http.Error(w, "Internal server error", http.StatusInternalServerError)
-			return
-		}
-		if imageURLs == nil {
+		imageURLs := r.Context().Value(contextkeys.ImageURLsKey).([]string)
 
+		if imageURLs == nil {
 			fmt.Println("imageURLs is indeed nil")
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return
 		}
-		userIDRaw := r.Context().Value(contextkeys.UserIDKey)
-		userID, ok := userIDRaw.(string)
-		if !ok {
-			fmt.Print("userID not ok")
-			return
-		}
+		userID := r.Context().Value(contextkeys.UserIDKey).(string)
 		userIDint, _ := strconv.Atoi(string(userID))
+
 		title := r.FormValue("title")
 		tagsJSON := r.FormValue("tags")
 
@@ -44,7 +34,6 @@ func FormCreatePost(db *db.DB) http.HandlerFunc {
 		var tags []string
 		err := json.Unmarshal([]byte(tagsJSON), &tags)
 		if err != nil {
-			fmt.Println("error occured when parsing the tags")
 			fmt.Print(err)
 			http.Error(w, "Invalid tags format", http.StatusBadRequest)
 			return

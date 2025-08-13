@@ -22,6 +22,8 @@ func Router(db *db.DB, views *jet.Set, envConfig config.EnvConfig) *mux.Router {
 	r.Handle("/login", ViewLogin(views)).Methods("GET")
 	r.Handle("/sign-handler", bunny.SignHandler(envConfig)).Methods("GET")
 
+	r.Handle("/latest-images", PartialLatestImgs(db, views, 0)).Methods("GET")
+
 	r.Handle("/upload", middleware.Authenticate(ViewUpload(views))).Methods("GET")
 
 	r.Handle("/create-post", middleware.Authenticate(bunny.UploadImages(envConfig, FormCreatePost(db)))).Methods("POST")

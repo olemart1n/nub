@@ -26,3 +26,8 @@ type Post struct {
 	CreatedAt time.Time
 	Tags      []string
 }
+
+type Image struct {
+	PostID   string
+	ImageURL string
+}
