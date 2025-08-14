@@ -22,12 +22,20 @@ type Post struct {
 	UserID    int
 	Title     string
 	Location  string
-	ImageURL  string
 	CreatedAt time.Time
-	Tags      []string
 }
 
 type Image struct {
-	PostID   string
-	ImageURL string
+	ID        int
+	PostID    int
+	ImageURL  string
+	CreatedAt time.Time
+}
+
+type Comment struct {
+	id        int
+	postID    int
+	userID    int
+	content   string
+	createdAt time.Time
 }

@@ -6,7 +6,7 @@ func (db *DB) GetUserPosts(username string) ([]Post, error) {
 	ctx := context.Background()
 
 	sql := `
-        SELECT p.id, p.user_id, p.title, p.location, p.image_url, p.created_at,
+        SELECT p.id, p.user_id, p.title, p.location, p.created_at,
                ARRAY(SELECT t.name
                      FROM tags t
                      JOIN post_tags pt ON pt.tag_id = t.id
@@ -26,7 +26,7 @@ func (db *DB) GetUserPosts(username string) ([]Post, error) {
 	var results []Post
 	for rows.Next() {
 		var p Post
-		err := rows.Scan(&p.ID, &p.UserID, &p.Title, &p.Location, &p.ImageURL, &p.CreatedAt, &p.Tags)
+		err := rows.Scan(&p.ID, &p.UserID, &p.Title, &p.Location, &p.CreatedAt)
 		if err != nil {
 			return nil, err
 		}

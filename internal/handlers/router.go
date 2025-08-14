@@ -15,7 +15,11 @@ import (
 func Router(db *db.DB, views *jet.Set, envConfig config.EnvConfig) *mux.Router {
 
 	r := mux.NewRouter()
+
+	// All users have access but shows different UI based on authentication
 	r.Handle("/", middleware.Authenticate(ViewIndex(views))).Methods("GET")
+	r.Handle("/post/{id}", middleware.Authenticate(ViewPost(views, db))).Methods("GET")
+
 	r.Handle("/login-handler", LoginHandler(db)).Methods("POST")
 	r.Handle("/signup", ViewSignup(views)).Methods("GET")
 
