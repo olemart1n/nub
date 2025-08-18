@@ -1,0 +1,13 @@
+{{define "header"}}
+
+<header class="w-full md:w-1/2">
+  <nav class="text-yellow-500 flex w-full">
+    <a href="/">Nub Global</a>
+    {{ if .IsLoggedIn }}
+    <a class="ml-auto px-3 mx-2 bg-slate-600" href="/upload">Upload</a>
+    {{ else }}
+    <a class="ml-auto px-3 mx-2 bg-slate-600" href="/signup">Signup</a>
+    {{ end }}
+  </nav>
+</header>
+{{end}}

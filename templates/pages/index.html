@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ .Title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/output.css" />
+    <link rel="stylesheet" href="/assets/css/filepond.css" />
+    <link rel="icon" href="data:," />
+    <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
+  </head>
+  <body>
+    {{template "header" .}}
+    <main>
+      <h1>Welcome to Nub Global</h1>
+      <p>This is the homepage content.</p>
+      <div
+        id="posts-gallery"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+        hx-trigger="load"
+        hx-get="/latest-posts-with-img"
+        hx-target="this"
+        hx-swap="afterbegin"
+      ></div>
+      <section id="swap-section"></section>
+    </main>
+
+    <footer>
+      <p>© Nub Global — Preserving the Past</p>
+    </footer>
+  </body>
+</html>

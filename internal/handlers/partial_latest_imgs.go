@@ -1,25 +1,15 @@
 package handlers
 
 import (
-	"fmt"
-	"log"
+	"html/template"
 	"net/http"
 
-	"github.com/CloudyKit/jet/v6"
 	"github.com/olemart1n/nub/internal/db"
 )
 
-func PartialLatestImgs(DB *db.DB, views *jet.Set, page int) http.HandlerFunc {
+func PartialLatestImgs(DB *db.DB, tpl *template.Template, page int) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
-
-		vars := make(jet.VarMap)
-
-		tmpl, err := views.GetTemplate("partials/image.jet")
-		if err != nil {
-			fmt.Print(err)
-			return
-		}
 
 		images, err := DB.GetLatestImages(r.Context(), page)
 		if err != nil {
@@ -27,16 +17,10 @@ func PartialLatestImgs(DB *db.DB, views *jet.Set, page int) http.HandlerFunc {
 			return
 		}
 
-		vars.Set("images", images)
-
-		err = tmpl.Execute(w, vars, nil)
+		err = tpl.ExecuteTemplate(w, "images.html", images)
 		if err != nil {
-			log.Println("Template execution error:", err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
+			http.Error(w, "error when executing images.html", http.StatusInternalServerError)
 		}
-
-		//		err = tmpl.Execute(w, vars, nil)
 
 	}
 }

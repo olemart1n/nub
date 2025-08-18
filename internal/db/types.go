@@ -15,6 +15,7 @@ type User struct {
 	ID        int
 	Username  string
 	CreatedAt time.Time
+	Email     *string // Could add email logic later.
 }
 
 type Post struct {
@@ -33,9 +34,18 @@ type Image struct {
 }
 
 type Comment struct {
-	id        int
-	postID    int
-	userID    int
-	content   string
-	createdAt time.Time
+	ID        int
+	PostID    int
+	UserID    int
+	Content   string
+	CreatedAt time.Time
+}
+type CommentWithUser struct {
+	Comment
+	Username *string
+}
+type PostWithImg struct {
+	Post       Post
+	Image      Image
+	ImageCount int
 }

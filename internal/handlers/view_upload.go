@@ -1,33 +1,26 @@
 package handlers
 
 import (
-	"log"
+	"html/template"
 	"net/http"
 
-	"github.com/CloudyKit/jet/v6"
+	contextkeys "github.com/olemart1n/nub/internal/handlers/context-keys"
 	"github.com/olemart1n/nub/utils"
 )
 
-func ViewUpload(views *jet.Set) http.HandlerFunc {
+func ViewUpload(tpl *template.Template) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		tmpl, err := views.GetTemplate("pages/upload.jet")
-		if err != nil {
-			log.Println("Template load error:", err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
+		var data TemplateDataUpload
 
-		vars := make(jet.VarMap)
-		vars.Set("title", "Upload images to nub.global")
-		userID := r.Context()
-		vars.Set("userID", userID)
-		vars.Set("countries", utils.Countries)
-		err = tmpl.Execute(w, vars, nil)
+		data.Index.Title = "Create a post"
+		data.countries = utils.Countries
+		data.Index.UserID = r.Context().Value(contextkeys.UserIDKey).(string)
+		data.Index.IsLoggedIn = r.Context().Value(contextkeys.IsLoggedInKey).(bool)
+
+		err := tpl.ExecuteTemplate(w, "upload.html", data)
 		if err != nil {
-			log.Println("Template execution error:", err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
+			http.Error(w, "error when executing post.html", http.StatusInternalServerError)
 		}
 
 	}

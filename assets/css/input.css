@@ -12,6 +12,7 @@ body {
   /*color: #1f2937;  text-gray-800 */
   margin: 0;
   display: grid;
-  grid-template-rows: 10% 1fr auto;
+  place-items: center;
+  grid-template-rows: 5% 1fr auto;
   height: 100dvh;
 }

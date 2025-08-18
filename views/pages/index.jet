@@ -1,9 +1,0 @@
-{{extends "/layouts/index.jet"}} {{block documentBody()}}
-<h1>Welcome to Nub Global</h1>
-<p>This is the homepage content.</p>
-<div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" 
-  hx-trigger="load" 
-  hx-get="/latest-images" 
-  hx-target="this" 
-  hx-swap="afterbegin"></div>
-{{end}}

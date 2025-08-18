@@ -27,7 +27,6 @@ func (db *DB) GetLatestImages(ctx context.Context, page int) ([]Image, error) {
 			fmt.Print("some error happened")
 			return nil, err
 		}
-		fmt.Println("Fetched image:", i.ImageURL)
 		results = append(results, i)
 	}
 	return results, nil

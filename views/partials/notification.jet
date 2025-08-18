@@ -1,5 +1,0 @@
-{{if notification}}
-  <div class="{{if notification.Error}}bg-red-500 text-white{{else}}bg-green-500 text-white{{end}} p-4 rounded mb-4">
-    {{notification.Message}}
-  </div>
-{{end}}

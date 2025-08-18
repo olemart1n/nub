@@ -1,0 +1,9 @@
+{{define "comment"}}
+
+<div class="border-1 rounded bg-slate-500 p-3 rounded-md">
+  <p>{{.Username}}</p>
+  <p class="text-slate-100">{{ .Content }}</p>
+  <p class="text-slate-400 text-xs mt-1">Posted at {{.CreatedAt }}</p>
+</div>
+
+{{end}}

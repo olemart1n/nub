@@ -6,3 +6,7 @@ type ContextKey string
 const UserIDKey ContextKey = "userID"
 
 const ImageURLsKey ContextKey = "imageURLs"
+
+type ContextBool bool
+
+const IsLoggedInKey ContextBool = false

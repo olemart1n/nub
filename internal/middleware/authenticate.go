@@ -21,6 +21,7 @@ func Authenticate(next http.Handler) http.Handler {
 			return
 		}
 
+		//	userID := r.Context().Value("userID").(string)
 		userID, err := session.GetSession(r.Context(), cookie.Value)
 		if err != nil {
 			http.Redirect(w, r, "/login", http.StatusSeeOther)
@@ -28,6 +29,7 @@ func Authenticate(next http.Handler) http.Handler {
 			return
 		}
 		ctx := context.WithValue(r.Context(), contextkeys.UserIDKey, userID)
+		ctx = context.WithValue(ctx, contextkeys.IsLoggedInKey, userID != "")
 		next.ServeHTTP(w, r.WithContext(ctx))
 
 	})
