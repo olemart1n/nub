@@ -28,7 +28,7 @@ func main() {
 	tmpl := template.Must(template.ParseGlob("templates/**/*.html"))
 	r := handlers.Router(database, tmpl, envConfig)
 
-	log.Print("Listening on port 8080")
+	log.Print("Listening on port: " + envConfig.PORT)
 	if err := http.ListenAndServe(":"+envConfig.PORT, r); err != nil {
 		log.Fatal("Server error: ", err)
 	}
