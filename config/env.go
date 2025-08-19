@@ -15,6 +15,7 @@ type EnvConfig struct {
 	StoragePasswordReadOnly string
 	PullZone                string
 	DatabaseURL             string
+	RedisURL                string
 }
 
 func LoadEnvConfig() EnvConfig {
@@ -30,6 +31,7 @@ func LoadEnvConfig() EnvConfig {
 		StoragePasswordReadOnly: os.Getenv("BUNNY_STORAGE_PASSWWORD_READ_ONLY"),
 		PullZone:                os.Getenv("BUNNY_PULL_ZONE"),
 		DatabaseURL:             os.Getenv("DATABASE_URL"),
+		RedisURL:                os.Getenv("REDIS_URL"),
 	}
 
 	return envs

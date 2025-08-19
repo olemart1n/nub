@@ -23,7 +23,7 @@ func main() {
 		log.Fatal("Error when connecting to database", err)
 	}
 
-	session.InitRedis("localhost:6379")
+	session.InitRedis(envConfig.RedisURL)
 
 	tmpl := template.Must(template.ParseGlob("templates/**/*.html"))
 	r := handlers.Router(database, tmpl, envConfig)

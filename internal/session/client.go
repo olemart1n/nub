@@ -9,12 +9,14 @@ import (
 
 var Client *redis.Client
 
-func InitRedis(addr string) error {
-	Client = redis.NewClient(&redis.Options{
-		Addr: addr, // e.g. "localhost:6379"
-	})
+func InitRedis(redisURL string) error {
+	opt, err := redis.ParseURL(redisURL)
+	if err != nil {
+		return fmt.Errorf("invalid Redis URL: %w", err)
+	}
 
-	// Ping to verify connection
+	Client = redis.NewClient(opt)
+
 	if err := Client.Ping(context.Background()).Err(); err != nil {
 		return fmt.Errorf("failed to connect to Redis: %w", err)
 	}
