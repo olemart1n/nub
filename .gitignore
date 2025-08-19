@@ -8,7 +8,7 @@
 /*.dylib
 *.test
 *.out
-
+out
 # Temporary files
 /tmp/
 /temp/
