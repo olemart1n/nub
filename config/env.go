@@ -16,6 +16,7 @@ type EnvConfig struct {
 	PullZone                string
 	DatabaseURL             string
 	RedisURL                string
+	PORT                    string
 }
 
 func LoadEnvConfig() EnvConfig {
@@ -32,6 +33,7 @@ func LoadEnvConfig() EnvConfig {
 		PullZone:                os.Getenv("BUNNY_PULL_ZONE"),
 		DatabaseURL:             os.Getenv("DATABASE_URL"),
 		RedisURL:                os.Getenv("REDIS_URL"),
+		PORT:                    os.Getenv("PORT"),
 	}
 
 	return envs

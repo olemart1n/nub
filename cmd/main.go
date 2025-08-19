@@ -29,7 +29,7 @@ func main() {
 	r := handlers.Router(database, tmpl, envConfig)
 
 	log.Print("Listening on port 8080")
-	if err := http.ListenAndServe(":8080", r); err != nil {
+	if err := http.ListenAndServe(":"+envConfig.PORT, r); err != nil {
 		log.Fatal("Server error: ", err)
 	}
 }
