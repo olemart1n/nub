@@ -1,9 +1,8 @@
 {
   "build": {
-    "install": "go mod tidy",
-    "cmd": "ls -la ./cmd && go build -o out ./cmd/main.go"
+    "cmd": "go build -o /app/out ./cmd/main.go && ls -la /app"
   },
   "start": {
-    "cmd": "./out"
+    "cmd": "/app/out"
   }
 }
