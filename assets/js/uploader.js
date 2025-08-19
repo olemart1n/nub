@@ -18,6 +18,7 @@ window.addEventListener("DOMContentLoaded", () => {
     //    imagePreviewHeight: 170,
   });
 
+  console.log(inputElement);
   const form = document.querySelector("#postForm");
 
   form.addEventListener("submit", async (e) => {

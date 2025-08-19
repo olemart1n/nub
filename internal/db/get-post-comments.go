@@ -18,7 +18,7 @@ func (db *DB) GetPostComments(ctx context.Context, postID int) ([]CommentWithUse
 FROM comments
 JOIN users ON comments.user_id = users.id
 WHERE comments.post_id = $1
-ORDER BY comments.created_at DESC`
+ORDER BY comments.created_at ASC`
 
 	rows, err := db.Pool.Query(ctx, sql, postID)
 	if err != nil {

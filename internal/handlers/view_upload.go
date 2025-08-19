@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 
@@ -14,12 +15,13 @@ func ViewUpload(tpl *template.Template) http.HandlerFunc {
 		var data TemplateDataUpload
 
 		data.Index.Title = "Create a post"
-		data.countries = utils.Countries
+		data.Countries = utils.Countries
 		data.Index.UserID = r.Context().Value(contextkeys.UserIDKey).(string)
 		data.Index.IsLoggedIn = r.Context().Value(contextkeys.IsLoggedInKey).(bool)
 
 		err := tpl.ExecuteTemplate(w, "upload.html", data)
 		if err != nil {
+			fmt.Print(err)
 			http.Error(w, "error when executing post.html", http.StatusInternalServerError)
 		}
 

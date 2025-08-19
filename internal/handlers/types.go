@@ -28,5 +28,5 @@ type TemplateDataPost struct {
 
 type TemplateDataUpload struct {
 	Index     TemplateDataIndex
-	countries []string
+	Countries []string
 }

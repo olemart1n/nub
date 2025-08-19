@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -23,6 +24,7 @@ func PartialComments(DB *db.DB, tpl *template.Template) http.HandlerFunc {
 
 		err = tpl.ExecuteTemplate(w, "comments.html", comments)
 		if err != nil {
+			fmt.Print(err)
 			http.Error(w, "error when executing comments.html", http.StatusInternalServerError)
 		}
 

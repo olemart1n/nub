@@ -26,3 +26,7 @@
 /*.dropdown:hover .dropdown-content {
   display: block;
 } */
+select,
+::picker(select) {
+  appearance: base-select;
+}

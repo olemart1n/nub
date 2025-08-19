@@ -25,7 +25,6 @@ func FormSubmitComment(DB *db.DB, tpl *template.Template) http.HandlerFunc {
 		userID := r.Context().Value(contextkeys.UserIDKey).(string)
 		userIDint, _ := strconv.Atoi(string(userID))
 
-		fmt.Print("is this function running?")
 		content := r.FormValue("content")
 
 		if len(content) == 0 {
@@ -39,7 +38,6 @@ func FormSubmitComment(DB *db.DB, tpl *template.Template) http.HandlerFunc {
 			http.Error(w, "Could not create comment", http.StatusInternalServerError)
 			return
 		}
-		fmt.Print("comment: ", comment)
 		err = tpl.ExecuteTemplate(w, "comment", comment)
 		if err != nil {
 			http.Error(w, "error when executing post.html", http.StatusInternalServerError)
