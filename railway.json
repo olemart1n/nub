@@ -1,4 +1,9 @@
 {
-  "build": "go build -o out ./cmd/main.go",
-  "start": "./out"
+  "build": {
+    "install": "go mod tidy",
+    "cmd": "go build -o out ./cmd/main.go"
+  },
+  "start": {
+    "cmd": "./out"
+  }
 }
