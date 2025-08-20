@@ -26,7 +26,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Create FormData with normal inputs
     const formData = new FormData(form);
+    const loader = document.querySelector("#loader")
 
+    // Loader while the request is running
+    loader.classList.remove("hidden")
+    loader.classList.add("flex")
     // Add FilePond files (multiple)
     pond.getFiles().forEach((fileItem) => {
       formData.append("images", fileItem.file); // "images" will be the key on the server
@@ -46,7 +50,9 @@ window.addEventListener("DOMContentLoaded", () => {
       body: formData,
     });
 
-    const json = await res.json();
-    console.log(json);
+    window.location.href = res.url;
+
+    //const json = await res.json();
+    //console.log(json);
   });
 });

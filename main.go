@@ -11,11 +11,6 @@ import (
 	"github.com/olemart1n/nub/internal/session"
 )
 
-// var views = jet.NewSet(
-// 	jet.NewOSFileSystemLoader("./views"),
-// 	jet.InDevelopmentMode(), // Fjern for produksjon
-// )
-
 func main() {
 	envConfig := config.LoadEnvConfig()
 	database, err := db.Connect(envConfig.DatabaseURL)

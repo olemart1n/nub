@@ -17,14 +17,14 @@ func Router(db *db.DB, tpl *template.Template, envConfig config.EnvConfig) *mux.
 	r := mux.NewRouter()
 
 	// All users have access but shows different UI based on authentication
-	r.Handle("/", middleware.Authenticate(ViewIndex(tpl))).Methods("GET")
+	r.Handle("/", middleware.WithUserContext(ViewIndex(tpl))).Methods("GET")
 
 	// view post page and serve related partials
-	r.Handle("/post/{id}", middleware.Authenticate(ViewPost(tpl, db))).Methods("GET")
+	r.Handle("/post/{id}", middleware.WithUserContext(ViewPost(tpl, db))).Methods("GET")
 	r.Handle("/get-post-comments/{id}", PartialComments(db, tpl))
-	r.Handle("/submit-comment/{id}", middleware.Authenticate(FormSubmitComment(db, tpl)))
+	r.Handle("/submit-comment/{id}", middleware.AuthenticationRequired(FormSubmitComment(db, tpl)))
 
-	r.Handle("/login-handler", LoginHandler(db)).Methods("POST")
+	r.Handle("/form-login", FormLogin(db, tpl)).Methods("POST")
 	r.Handle("/signup", ViewSignup(tpl)).Methods("GET")
 
 	r.Handle("/login", ViewLogin(tpl)).Methods("GET")
@@ -33,9 +33,9 @@ func Router(db *db.DB, tpl *template.Template, envConfig config.EnvConfig) *mux.
 	// SERVE REQUESTED PARTIALS
 	r.Handle("/latest-images", PartialLatestImgs(db, tpl, 0)).Methods("GET")
 	r.Handle("/latest-posts-with-img", PartialLatestPostsWithImg(db, tpl, 0))
-	r.Handle("/upload", middleware.Authenticate(ViewUpload(tpl))).Methods("GET")
+	r.Handle("/upload", middleware.AuthenticationRequired(ViewUpload(tpl))).Methods("GET")
 
-	r.Handle("/create-post", middleware.Authenticate(bunny.UploadImages(envConfig, FormCreatePost(db)))).Methods("POST")
+	r.Handle("/create-post", middleware.AuthenticationRequired(bunny.UploadImages(envConfig, FormCreatePost(db)))).Methods("POST")
 
 	r.Handle("/new-user", FormCreateUser(db, tpl)).Methods("POST")
 	// Serve static files at /static/

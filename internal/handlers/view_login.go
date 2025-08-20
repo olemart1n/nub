@@ -7,11 +7,9 @@ import (
 
 func ViewLogin(tpl *template.Template) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var data TemplateDataIndex
-		data.Title = "Login"
-		err := tpl.ExecuteTemplate(w, "login.html", data)
+		err := tpl.ExecuteTemplate(w, "login.html", nil)
 		if err != nil {
-			http.Error(w, "error when executing post.html", http.StatusInternalServerError)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 
 	}

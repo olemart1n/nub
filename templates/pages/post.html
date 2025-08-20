@@ -10,7 +10,7 @@
   </head>
   <body>
     {{template "header" .Index}}
-    <main class="w-full flex flex-col place-content-center">
+    <main>
       <!--TITLE-->
       <h2 class="text-white text-2xl font-bold text-center">
         {{.Index.Title}}
@@ -44,10 +44,10 @@
       </div>
 
       <!-- COMMENT SECTION -->
-      <div class="relative mt-6 md:max-w-2/3 mx-auto">
-        <h3 class="block mx-auto text-slate-600 mb-2">Comments</h3>
+      <div class="relative mt-6 md:max-w-2/3">
 
         <!-- Comment Form -->
+         {{if .Index.IsLoggedIn}}
         <form
           hx-post="/submit-comment/{{.Post.ID}}"
           hx-swap="beforeend"
@@ -58,7 +58,7 @@
             name="content"
             required
             rows="3"
-            placeholder="comment.."
+            placeholder="Write a comment"
             class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           ></textarea>
           <button
@@ -67,7 +67,9 @@
           >
             Post Comment
           </button>
+          
         </form>
+        {{end}}
 
         <!-- Comments Container -->
         <div
@@ -90,7 +92,7 @@
       const thumbnails = document.querySelectorAll(".thumbnail");
       thumbnails.forEach((thumb) => {
         thumb.addEventListener("click", () => {
-          console.log(thumb.src);
+          
           mainImage.src = thumb.src;
         });
       });

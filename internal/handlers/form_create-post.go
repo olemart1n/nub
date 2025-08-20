@@ -40,19 +40,21 @@ func FormCreatePost(db *db.DB) http.HandlerFunc {
 		}
 		location := r.FormValue("location")
 
-		err = db.CreatePost(r.Context(), userIDint, title, location, tags, imageURLs)
+		postID, err := db.CreatePost(r.Context(), userIDint, title, location, tags, imageURLs)
 		if err != nil {
 			fmt.Print(err)
 			http.Error(w, "Could not create post", http.StatusInternalServerError)
 			return
 		}
 
-		notification := Notification{
-			Error:   false,
-			Message: "Post successfully created",
-		}
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(notification)
+		//notification := Notification{
+		//			Error:   false,
+		//			Message: "Post successfully created",
+		//}
+		// w.Header().Set("Content-Type", "application/json")
+		// json.NewEncoder(w).Encode(notification)
+		// w.WriteHeader(http.StatusOK)
+		http.Redirect(w, r, "/post/"+strconv.Itoa(postID), http.StatusSeeOther)
+
 	}
 }

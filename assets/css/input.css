@@ -1,18 +1,37 @@
-@import url("dropdown.css");
+/* @import url("login.css"); */
 @import "tailwindcss";
 
 :root {
   color-scheme: light dark;
+  --blue-color: #395487;
+}
+html {
+  scrollbar-gutter: stable;
 }
 body {
-  background-color: light-dark(#fff, #1c1d1f);
+  background-color: light-dark(#9199a8, #1c1d1f);
   font-family: system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   /*color: #1f2937;  text-gray-800 */
   margin: 0;
   display: grid;
-  place-items: center;
+  justify-items: center;
   grid-template-rows: 5% 1fr auto;
   height: 100dvh;
+  max-width: 1500px;
+  margin: auto;
+}
+
+header {
+  width: 100%;
+  padding: 4px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
