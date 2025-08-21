@@ -24,6 +24,10 @@
         id="postForm"
         enctype="multipart/form-data"
         class="w-full md:w-2/3 mx-auto"
+        hx-post="/create-post"
+        hx-trigger="submit"
+        hx-target="#loader"
+        hx-swap="outerHTML"
       >
         <!--INPUT FOR TITLE -->
         <div class="flex w-full md:w-md px-2 py-1">
@@ -38,7 +42,7 @@
           />
         </div>
 
-        <!--INPUT FOR TAGS -->
+        <!--INPUT FOR TAGS 
         <div class="flex w-full md:w-md px-2 py-1">
           <label for="tags" class="text-slate-400 mr-auto my-auto"
             >Tag(s):
@@ -49,7 +53,7 @@
             name="tags"
             placeholder="(comma-separated)"
           />
-        </div>
+        </div> -->
 
         <!--INPUT FOR LOCATION -->
         <div class="flex w-full md:w-md px-2 py-1 text-slate-100 mb-2">
@@ -76,11 +80,11 @@
         >
           Post
         </button>
-        <div id="loader" class='hidden space-x-2 justify-center items-center h-screen max-h-4 -translate-y-3'>
+        <div id="loader" class='hidden space-x-2 justify-center items-center h-screen max-h-4'>
             <span class='sr-only'>Loading...</span>
-            <div class='h-2 w-2 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-            <div class='h-2 w-2 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-            <div class='h-2 w-2 bg-black rounded-full animate-bounce'></div>
+            <div class='h-2 w-2 bg-yellow-400 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+            <div class='h-2 w-2 bg-yellow-400 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+            <div class='h-2 w-2 bg-yellow-400 rounded-full animate-bounce'></div>
         </div>
       </form>
     </main>

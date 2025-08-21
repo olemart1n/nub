@@ -8,6 +8,10 @@
 html {
   scrollbar-gutter: stable;
 }
+select,
+::picker(select) {
+  appearance: base-select;
+}
 body {
   background-color: light-dark(#9199a8, #1c1d1f);
   font-family: system-ui, sans-serif;
@@ -32,6 +36,5 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
 }

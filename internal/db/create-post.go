@@ -29,8 +29,10 @@ func (db *DB) CreatePost(ctx context.Context, userID int, title string, location
 	}
 
 	// Insert tags
-	if err := insertTags(ctx, tx, postID, tags); err != nil {
-		return 0, err
+	if len(tags) != 0 {
+		if err := insertTags(ctx, tx, postID, tags); err != nil {
+			return 0, err
+		}
 	}
 
 	return postID, tx.Commit(ctx)

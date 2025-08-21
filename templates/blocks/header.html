@@ -4,9 +4,11 @@
   <nav class="text-yellow-500 flex w-full">
     <a href="/">Nub Global</a>
     {{ if .IsLoggedIn }}
-    <a class="ml-auto px-3 mx-2 bg-slate-600" href="/upload">Upload</a>
+    <a class="ml-auto px-3 mx-2 bg-slate-600 cursor-pointer" href="/upload">Upload</a>
+    
+    <button hx-post="/sign-out" class="cursor-pointer" hx-redirect="/">Sign out</button>
     {{ else }}
-    <a class="ml-auto px-3 mx-2 bg-slate-600" href="/login">Login</a>
+    <a class="ml-auto px-3 mx-2 bg-slate-600" href="/sign-in">Sign in</a>
     {{ end }}
   </nav>
 </header>

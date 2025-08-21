@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/output.css" />
+    
+    <link rel="icon" href="data:," />
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script src="/assets/js/sign-up.js"></script>
+  </head>
+  <body>
+    {{template "header" .}}
+    <main>
+      <h2>Sign Up</h2>
+      <form
+        hx-post="/sign-up"
+        hx-target="#signup-msg"
+        hx-swap="innerHTML"
+        class="p-8 rounded-sm w-full max-w-xs"
+      >
+        <div class="mb-5 flex flex-col">
+          <label class="mb-2 font-medium text-gray-200">Email</label>
+          <input
+            type="email"
+            name="email"
+            required
+            class="px-3 py-2 border border-slate-700 rounded text-gray-50 
+            bg-black text-base focus:outline-none focus:border-yellow-400 
+            focus:ring-2 focus:ring-yellow-400/40"
+          />
+        </div>
+        <div class="mb-5 flex flex-col">
+          <label class="mb-2 font-medium text-gray-200">Username</label>
+          <input
+            type="text"
+            name="username"
+            required
+            class="px-3 py-2 border border-slate-700 rounded text-gray-50 
+            bg-black text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40"
+          />
+        </div>
+
+        <div class="mb-5 flex flex-col">
+          <label class="mb-2 font-medium text-gray-200">Password</label>
+          <input
+            type="password"
+            name="password"
+            required
+            class="px-3 py-2 border border-slate-700 rounded text-gray-50 
+            bg-black text-base focus:outline-none focus:border-yellow-400 
+            focus:ring-2 focus:ring-yellow-400/40"
+          />
+        </div>
+
+        <button
+          type="submit"
+          type="submit"
+          class="w-full py-3 bg-yellow-400 text-slate-800 font-semibold text-base 
+          rounded-sm cursor-pointer transition-colors duration-200 hover:bg-yellow-500"
+        >
+          Sign Up
+        </button>
+      </form>
+      <div id="signup-msg"></div>
+    </main>
+
+    <footer>
+      <p>© Nub Global — Preserving the Past</p>
+    </footer>
+    
+  </body>
+</html>
