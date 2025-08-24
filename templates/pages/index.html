@@ -9,19 +9,22 @@
     <link rel="icon" href="data:," />
     <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
     <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index-page.js" defer></script>
   </head>
   <body>
     {{template "header" .}}
-    <main>
-      <h1>Latest uploads..</h1>
+    <main class="p-2">
+      <h1 class="my-3">Below is the latest uploads..</h1>
       <div
         id="posts-gallery"
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+        class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full"
         hx-trigger="load"
         hx-get="/latest-posts-with-img"
         hx-target="this"
-        hx-swap="afterbegin"
-      ></div>
+        hx-swap="innerHTML"
+      >
+    
+    </div>
       <section id="swap-section"></section>
     </main>
 

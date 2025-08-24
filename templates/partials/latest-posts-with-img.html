@@ -1,7 +1,7 @@
 {{ range .}}
 <a
   href="/post/{{ .Post.ID }}"
-  class="relative block rounded shadow-lg hover:shadow-xl transition-shadow duration-200 -x-10"
+  class="relative block rounded shadow-lg hover:shadow-xl transition-shadow duration-200 -x-10 w-full aspect-square"
 >
   {{if .Post.Location }}
   <span
@@ -31,10 +31,13 @@
     <span>{{ .ImageCount }}</span>
   </div>
   {{ end }}
-  <img
-    src="{{ .Image.ImageURL }}"
-    alt="Image"
-    class="w-full aspect-square object-cover rounded-sm hover:scale-105 transition-transform duration-200"
-  />
+  <div class="w-full aspect-square bg-black rounded-sm overflow-hidden relative">
+    <img
+      src="{{ .Image.ImageURL }}"
+      alt="Image"
+      class="w-full h-full object-cover hover:scale-105 transition-transform duration-200 animate-pulse animate-pulse"
+      loading="lazy"
+    />
+  </div>
 </a>
 {{ end }}

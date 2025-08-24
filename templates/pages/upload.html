@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
     <script src="/assets/js/filepond.js"></script>
     <script src="/assets/js/uploader.js"></script>
-
+    <script src="/assets/js/menu.js" defer></script>
     <link
       href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
       rel="stylesheet"
@@ -20,6 +20,7 @@
   <body>
     {{template "header" .Index}}
     <main class="w-full">
+      <img src="/assets/img/decoration.png" class="h-92" alt="decoration image">
       <form
         id="postForm"
         enctype="multipart/form-data"
