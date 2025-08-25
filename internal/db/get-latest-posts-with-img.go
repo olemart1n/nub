@@ -28,6 +28,7 @@ func (db *DB) GetLatestPostsWithImg(ctx context.Context, page int) ([]PostWithIm
 		if err != nil {
 			return nil, err
 		}
+
 		results = append(results, P)
 	}
 	if err = rows.Err(); err != nil {

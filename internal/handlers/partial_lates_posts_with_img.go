@@ -11,13 +11,13 @@ func PartialLatestPostsWithImg(DB *db.DB, tpl *template.Template, page int) http
 
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		images, err := DB.GetLatestPostsWithImg(r.Context(), page)
+		posts, err := DB.GetLatestPostsWithImg(r.Context(), page)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		err = tpl.ExecuteTemplate(w, "latest-posts-with-img.html", images)
+		err = tpl.ExecuteTemplate(w, "latest-posts-with-img.html", posts)
 		if err != nil {
 			http.Error(w, "error when executing images.html", http.StatusInternalServerError)
 		}

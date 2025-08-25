@@ -9,7 +9,8 @@
     <link rel="icon" href="data:," />
     <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
     <script src="/assets/js/filepond.js"></script>
-    <script src="/assets/js/uploader.js"></script>
+    <script src="/assets/js/uploader.js" type="module"></script>
+    
     <script src="/assets/js/menu.js" defer></script>
     <link
       href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
@@ -43,19 +44,26 @@
           />
         </div>
 
-        <!--INPUT FOR TAGS 
-        <div class="flex w-full md:w-md px-2 py-1">
-          <label for="tags" class="text-slate-400 mr-auto my-auto"
+      <!--  <div>
+          <label for="tagInput" class="text-slate-400 mr-auto my-auto"
             >Tag(s):
-          </label>
+          </label>          
           <input
+          id="tagInput"
             type="text"
-            class="placeholder:text-slate-400 w-3/4 px-2 py-1 text-slate-100 border-b border-slate-600 focus:outline-none focus:border-yellow-500 transition"
-            name="tags"
-            placeholder="(comma-separated)"
+            class="w-3/4 px-2 py-1 text-slate-100 border-b border-slate-600 focus:outline-none focus:border-yellow-500 transition"
+            name="tagInput"
+            placeholder="Type a tag then hit Enter"
           />
-        </div> -->
+          <input type="text" name="tags" class="hidden" id="tags">
+          <div id="predefined-tags" class=" my-3">
 
+          </div>
+
+          <div id="addedTags" class="flex flex-wrap gap-1 m-1"></div>
+
+        </div> -->
+        
         <!--INPUT FOR LOCATION -->
         <div class="flex w-full md:w-md px-2 py-1 text-slate-100 mb-2">
           <label for="location" class="text-slate-400 mr-auto"

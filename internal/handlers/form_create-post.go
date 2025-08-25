@@ -25,6 +25,14 @@ func FormCreatePost(db *db.DB, tpl *template.Template) http.HandlerFunc {
 		title := r.FormValue("title")
 
 		var tags []string
+		// tagsJSON := r.FormValue("tags")
+
+		// err := json.Unmarshal([]byte(tagsJSON), &tags)
+		// if err != nil {
+		// 	fmt.Print(err)
+		// 	http.Error(w, "Invalid tags format", http.StatusBadRequest)
+		// 	return
+		// }
 
 		location := r.FormValue("location")
 
