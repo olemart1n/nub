@@ -11,11 +11,12 @@ import (
 func ViewIndex(tpl *template.Template) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		var data TemplateDataIndex
-		data.Title = "Nub Global Index"
-
-		data.UserID = r.Context().Value(contextkeys.UserIDKey).(string)
-		data.IsLoggedIn = r.Context().Value(contextkeys.IsLoggedInKey).(bool)
+		data := TemplateDataIndex{
+			Title:      "Nub Global Index",
+			UserID:     r.Context().Value(contextkeys.UserIDKey).(string),
+			IsLoggedIn: r.Context().Value(contextkeys.IsLoggedInKey).(bool),
+			Query:      r.URL.Query().Get("q"),
+		}
 
 		err := tpl.ExecuteTemplate(w, "index.html", data)
 		if err != nil {

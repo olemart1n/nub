@@ -5,23 +5,28 @@
     <title>{{ .Title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/assets/css/output.css" />
-    <link rel="stylesheet" href="/assets/css/filepond.css" />
     <link rel="icon" href="data:," />
     <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
     <script src="/assets/js/menu.js" defer></script>
     <script src="/assets/js/index-page.js" defer></script>
   </head>
   <body>
+
     {{template "header" .}}
+    
     <main class="p-2">
-      <h1 class="my-3">Below is the latest uploads..</h1>
+
+      <h1 class="my-3 sr-only">Below is the latest uploads..</h1>
+
+      <form action="/" method="get" hx-get="/search" hx-target="#posts-gallery" hx-push-url="true" class="my-2">
+        <input type="text" name="q" placeholder="Peru + nubs ..." value="{{.Query}}" class="border border-slate-200">
+        <button type="submit" class="border border-slate-200 bg-yellow-300 text-slate-800 text-sm px-1">Search</button>
+      </form>
+
       <div
         id="posts-gallery"
         class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full"
-        hx-trigger="load"
-        hx-get="/latest-posts-with-img"
-        hx-target="this"
-        hx-swap="innerHTML"
+
       >
     
     </div>
@@ -33,3 +38,9 @@
     </footer>
   </body>
 </html>
+
+<!-- 
+        hx-trigger="load"
+        hx-get="/latest-posts-with-img"
+        hx-target="this"
+        hx-swap="innerHTML" -->

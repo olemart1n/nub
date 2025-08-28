@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
     <script src="/assets/js/filepond.js"></script>
     <script src="/assets/js/uploader.js" type="module"></script>
-    
+
     <script src="/assets/js/menu.js" defer></script>
     <link
       href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
@@ -21,7 +21,11 @@
   <body>
     {{template "header" .Index}}
     <main class="w-full">
-      <img src="/assets/img/decoration.png" class="h-92" alt="decoration image">
+      <img
+        src="/assets/img/decoration.png"
+        class="h-92"
+        alt="decoration image"
+      />
       <form
         id="postForm"
         enctype="multipart/form-data"
@@ -44,7 +48,7 @@
           />
         </div>
 
-      <!--  <div>
+        <!--  <div>
           <label for="tagInput" class="text-slate-400 mr-auto my-auto"
             >Tag(s):
           </label>          
@@ -63,7 +67,7 @@
           <div id="addedTags" class="flex flex-wrap gap-1 m-1"></div>
 
         </div> -->
-        
+
         <!--INPUT FOR LOCATION -->
         <div class="flex w-full md:w-md px-2 py-1 text-slate-100 mb-2">
           <label for="location" class="text-slate-400 mr-auto"
@@ -82,18 +86,32 @@
         </div>
 
         <!-- INPUT FOR FILE(S)-->
+
         <input type="file" name="images" id="images" multiple required />
+        <label class="mx-auto">
+          <input type="checkbox" />
+          Similar photos of the location is not already uploaded to nub.global
+        </label>
         <button
+          disabled
           type="submit"
-          class="px-4 py-2 bg-yellow-500 text-slate-900 font-semibold rounded-sm hover:bg-yellow-200 focus:outline-none focus:ring-2 block mx-auto focus:ring-yellow-100 transition"
+          class="px-4 py-2 disabled:bg-yellow-600 mt-2 bg-yellow-500 text-slate-900 font-semibold rounded-sm hover:bg-yellow-200 focus:outline-none focus:ring-2 block mx-auto focus:ring-yellow-100 transition"
         >
           Post
         </button>
-        <div id="loader" class='hidden space-x-2 justify-center items-center h-screen max-h-4'>
-            <span class='sr-only'>Loading...</span>
-            <div class='h-2 w-2 bg-yellow-400 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-            <div class='h-2 w-2 bg-yellow-400 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-            <div class='h-2 w-2 bg-yellow-400 rounded-full animate-bounce'></div>
+
+        <div
+          id="loader"
+          class="hidden space-x-2 justify-center items-center h-screen max-h-4"
+        >
+          <span class="sr-only">Loading...</span>
+          <div
+            class="h-2 w-2 bg-yellow-400 rounded-full animate-bounce [animation-delay:-0.3s]"
+          ></div>
+          <div
+            class="h-2 w-2 bg-yellow-400 rounded-full animate-bounce [animation-delay:-0.15s]"
+          ></div>
+          <div class="h-2 w-2 bg-yellow-400 rounded-full animate-bounce"></div>
         </div>
       </form>
     </main>

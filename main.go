@@ -9,6 +9,7 @@ import (
 	"github.com/olemart1n/nub/internal/db"
 	"github.com/olemart1n/nub/internal/handlers"
 	"github.com/olemart1n/nub/internal/session"
+	"github.com/olemart1n/nub/utils"
 )
 
 func main() {
@@ -20,7 +21,11 @@ func main() {
 
 	session.InitRedis(envConfig.RedisURL)
 
-	tmpl := template.Must(template.ParseGlob("templates/**/*.html"))
+	// tmpl := template.Must(template.ParseGlob("templates/**/*.html"))
+
+	tmpl := template.Must(template.New("").Funcs(template.FuncMap{
+		"humanDate": utils.HumanDate,
+	}).ParseGlob("templates/**/*.html"))
 	r := handlers.Router(database, tmpl, envConfig)
 
 	log.Print("Listening on port: " + envConfig.PORT)

@@ -4,7 +4,7 @@
 
     let tags = []
 
-    let predefinedTags = ["nubs", "box", "pyrimad", "damage-holes", "clamps", "bedrock", "bedrock", "pinch-holes", "temple", "filler-stone"]
+    let predefinedTags = ["nubs", "box", "pyramid", "damage-holes", "clamps", "bedrock", "bedrock", "pinch-holes", "temple", "filler-stone"]
 
     function renderTags() {
       addedTags.innerHTML = "";

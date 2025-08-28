@@ -1,5 +1,3 @@
-
-
 window.addEventListener("DOMContentLoaded", () => {
   const inputElement = document.querySelector('input[type="file"]');
 
@@ -14,18 +12,19 @@ window.addEventListener("DOMContentLoaded", () => {
     instantUpload: false,
     imageResizeMode: "cover",
     stylePanelAspectRatio: "square",
-     storeAsFile: true
+    storeAsFile: true,
   });
 
-
   htmx.on("#postForm", "htmx:beforeRequest", () => {
-
-    
-
-    console.log("htmx triggered")
     const loader = document.querySelector("#loader");
     loader.classList.remove("hidden");
     loader.classList.add("flex");
   });
 
+  const checkBox = document.querySelector('input[type="checkbox"]');
+  const uploadBtn = document.querySelector("form button");
+
+  checkBox.addEventListener("change", () => {
+    uploadBtn.removeAttribute("disabled");
+  });
 });

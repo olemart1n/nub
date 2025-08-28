@@ -17,7 +17,7 @@ type TemplateDataIndex struct {
 	IsLoggedIn bool
 	UserID     string
 	Title      string
-	Page       string // Identifies which template to include
+	Query      string
 }
 
 type TemplateDataPost struct {
