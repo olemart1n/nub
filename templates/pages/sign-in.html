@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="/assets/css/output.css" />
     <link rel="icon" href="data:," />
     <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
+
+    <script src="/assets/js/sign-in.js"></script>
   </head>
   <body>
     {{template "header" .}}
     <main>
       <h1 class="sr-only">Sign in</h1>
-      <form class="p-8 rounded-sm w-full max-w-xs"
-              hx-post="/sign-in"
+      <form
+        class="p-8 rounded-sm w-full max-w-xs"
+        hx-post="/sign-in"
         hx-target="#notification"
         hx-swap="innerHTML"
       >
@@ -23,8 +26,7 @@
             type="text"
             name="username"
             required
-            class="px-3 py-2 border border-slate-700 rounded text-gray-50 
-            bg-black text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40"
+            class="px-3 py-2 border border-slate-700 rounded text-gray-50 bg-black text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40"
           />
         </div>
 
@@ -34,22 +36,21 @@
             type="password"
             name="password"
             required
-            class="px-3 py-2 border border-slate-700 rounded text-gray-50 
-            bg-black text-base focus:outline-none focus:border-yellow-400 
-            focus:ring-2 focus:ring-yellow-400/40"
+            class="px-3 py-2 border border-slate-700 rounded text-gray-50 bg-black text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40"
           />
         </div>
 
         <button
           type="submit"
-          class="w-full py-3 bg-yellow-400 text-slate-800 font-semibold text-base 
-          rounded-sm cursor-pointer transition-colors duration-200 hover:bg-yellow-500"
+          class="w-full py-3 bg-yellow-400 text-slate-800 font-semibold text-base rounded-sm cursor-pointer transition-colors duration-200 hover:bg-yellow-500"
         >
           Sign in
         </button>
         <div class="my-2" id="notification"></div>
 
-        <a href="/sign-up" class="mt-5 p-1 px-2 shadow-md inline-block text-sm bg-slate-400"
+        <a
+          href="/sign-up"
+          class="mt-5 p-1 px-2 shadow-md inline-block text-sm bg-slate-400"
           >Signup</a
         >
       </form>

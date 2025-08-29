@@ -18,10 +18,8 @@ func AuthSignIn(db *db.DB, tpl *template.Template) http.HandlerFunc {
 
 		u, err := db.AuthenticateUser(username, password)
 		if err != nil {
-			fmt.Println(err)
 			err = tpl.ExecuteTemplate(w, "notification", Notification{Error: true, Message: err.Error()})
 			if err != nil {
-				fmt.Print(err)
 				http.Error(w, "error when executing notifiation, can not login", http.StatusInternalServerError)
 			}
 			return

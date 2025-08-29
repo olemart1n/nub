@@ -1,6 +1,8 @@
 {{define "notification"}}
 <p
   class="{{if .Error}}bg-red-500 text-white{{else}}bg-green-500 text-white{{end}} p-1 text-center rounded mb-4"
+  data-error="{{.Error}}"
+  id="notification"
 >
   {{.Message}}
 </p>

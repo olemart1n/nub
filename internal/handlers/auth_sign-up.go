@@ -36,14 +36,6 @@ func AuthSignUp(DB *db.DB, tpl *template.Template) http.HandlerFunc {
 			Error:   false,
 			Message: "User " + username + " created",
 		}
-		w.Header().Set("HX-Trigger", `{"notify": "Signed out successfully"}`)
-		err = tpl.ExecuteTemplate(w, "notification", notification)
-
-		if err != nil {
-			log.Println("Template execution error:", err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
+		_ = tpl.ExecuteTemplate(w, "notification", notification)
 	}
 }
