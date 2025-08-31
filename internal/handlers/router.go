@@ -39,7 +39,7 @@ func Router(db *db.DB, tpl *template.Template, envConfig config.EnvConfig) *mux.
 	r.Handle("/sign-handler", bunny.SignHandler(envConfig)).Methods("GET")
 
 	// SERVE REQUESTED PARTIALS
-	r.Handle("/latest-posts-with-img", PartialLatestPostsWithImg(db, tpl, 0))
+	r.Handle("/latest-posts-with-img/{pageNumber}", PartialLatestPostsWithImg(db, tpl))
 	// .. SEARCH
 	r.Handle("/search", SearchPosts(db, tpl))
 

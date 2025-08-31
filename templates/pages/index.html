@@ -8,29 +8,53 @@
     <link rel="icon" href="data:," />
     <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
     <script src="/assets/js/menu.js" defer></script>
-    <script src="/assets/js/index-page.js" defer></script>
+    <script src="/assets/js/pages/index/index.js" type="module" defer></script>
   </head>
   <body>
-
     {{template "header" .}}
-    
-    <main class="p-2">
 
+    <main class="p-2">
       <h1 class="my-3 sr-only">Below is the latest uploads..</h1>
 
-      <form action="/" method="get" hx-get="/search" hx-target="#posts-gallery" hx-push-url="true" class="my-2">
-        <input type="text" name="q" placeholder="Peru + nubs ..." value="{{.Query}}" class="border border-slate-200">
-        <button type="submit" class="border border-slate-200 bg-yellow-300 text-slate-800 text-sm px-1">Search</button>
+      <form
+        action="/"
+        method="get"
+        hx-get="/search"
+        hx-target="#posts-gallery"
+        hx-push-url="true"
+        class="my-2"
+      >
+        <input
+          type="text"
+          name="q"
+          placeholder="Peru + nubs ..."
+          value="{{.Query}}"
+          class="border border-slate-200"
+        />
+        <button
+          type="submit"
+          class="border border-slate-200 bg-yellow-300 text-slate-800 text-sm px-1"
+        >
+          Search
+        </button>
       </form>
 
       <div
         id="posts-gallery"
         class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full"
-
       >
-    
-    </div>
-      <section id="swap-section"></section>
+        {{template "loader"}}
+      </div>
+      <div class="h-20 w-full p-2 text-center text-black">
+        <button
+          type="click"
+          class="bg-yellow-300 p-1 text-sm cursor-pointer"
+          id="load-more-posts-btn"
+        >
+          See more posts
+        </button>
+        {{template "loader"}}
+      </div>
     </main>
 
     <footer>
@@ -44,3 +68,4 @@
         hx-get="/latest-posts-with-img"
         hx-target="this"
         hx-swap="innerHTML" -->
+

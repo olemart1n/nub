@@ -5,7 +5,9 @@ import (
 	"time"
 )
 
-func (db *DB) SearchPostsWithImg(ctx context.Context, query string) ([]PostWithImg, error) {
+func (db *DB) SearchPostsWithImg(ctx context.Context, query string, page int) ([]PostWithImg, error) {
+	const pageSize = 12
+	offset := page * pageSize
 	sql := `
         SELECT 
             p.id,
@@ -31,9 +33,10 @@ func (db *DB) SearchPostsWithImg(ctx context.Context, query string) ([]PostWithI
         WHERE to_tsvector('english', p.title || ' ' || COALESCE(p.location, ''))
               @@ plainto_tsquery($1)
         ORDER BY p.created_at DESC
+				LIMIT $2 OFFSET $3
     `
 
-	rows, err := db.Pool.Query(ctx, sql, query)
+	rows, err := db.Pool.Query(ctx, sql, query, pageSize, offset)
 	if err != nil {
 		return nil, err
 	}

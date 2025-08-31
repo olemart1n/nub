@@ -19,7 +19,6 @@
     --color-cyan-300: oklch(86.5% 0.127 207.078);
     --color-blue-300: oklch(80.9% 0.105 251.813);
     --color-blue-500: oklch(62.3% 0.214 259.815);
-    --color-blue-600: oklch(54.6% 0.245 262.881);
     --color-slate-50: oklch(98.4% 0.003 247.858);
     --color-slate-100: oklch(96.8% 0.007 247.896);
     --color-slate-200: oklch(92.9% 0.013 255.508);
@@ -42,8 +41,6 @@
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
-    --text-xl: 1.25rem;
-    --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
     --font-weight-medium: 500;
@@ -220,14 +217,17 @@
   .absolute {
     position: absolute;
   }
+  .fixed {
+    position: fixed;
+  }
   .relative {
     position: relative;
   }
   .static {
     position: static;
   }
-  .-right-1\/2 {
-    right: calc(calc(1/2 * 100%) * -1);
+  .-right-1\/4 {
+    right: calc(calc(1/4 * 100%) * -1);
   }
   .right-1 {
     right: calc(var(--spacing) * 1);
@@ -351,6 +351,9 @@
   }
   .h-16 {
     height: calc(var(--spacing) * 16);
+  }
+  .h-20 {
+    height: calc(var(--spacing) * 20);
   }
   .h-92 {
     height: calc(var(--spacing) * 92);
@@ -654,6 +657,9 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
+  .text-black {
+    color: var(--color-black);
+  }
   .text-gray-50 {
     color: var(--color-gray-50);
   }
@@ -875,16 +881,6 @@
       background-color: var(--color-yellow-600);
     }
   }
-  .sm\:-right-1\/4 {
-    @media (width >= 40rem) {
-      right: calc(calc(1/4 * 100%) * -1);
-    }
-  }
-  .sm\:w-1\/2 {
-    @media (width >= 40rem) {
-      width: calc(1/2 * 100%);
-    }
-  }
   .md\:w-1\/2 {
     @media (width >= 48rem) {
       width: calc(1/2 * 100%);
@@ -931,7 +927,6 @@ body {
   justify-items: center;
   grid-template-rows: 5% 1fr auto;
   height: 100dvh;
-  max-width: 1500px;
   margin: auto;
 }
 header {
@@ -939,6 +934,7 @@ header {
   padding: 4px;
 }
 main {
+  max-width: 1500px;
   display: flex;
   flex-direction: column;
   align-items: center;

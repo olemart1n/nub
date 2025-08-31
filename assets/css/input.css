@@ -23,7 +23,6 @@ body {
   justify-items: center;
   grid-template-rows: 5% 1fr auto;
   height: 100dvh;
-  max-width: 1500px;
   margin: auto;
 }
 
@@ -33,6 +32,7 @@ header {
 }
 
 main {
+  max-width: 1500px;
   display: flex;
   flex-direction: column;
   align-items: center;
