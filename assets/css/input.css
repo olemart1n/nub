@@ -13,7 +13,7 @@ select,
   appearance: base-select;
 }
 body {
-  background-color: light-dark(#9199a8, #1c1d1f);
+  background-color: light-dark(#fff7cc, #1c1d1f);
   font-family: system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.5;

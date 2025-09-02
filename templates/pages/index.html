@@ -29,11 +29,11 @@
           name="q"
           placeholder="Peru + nubs ..."
           value="{{.Query}}"
-          class="border border-slate-200"
+          class="border bg-black border-slate-200 placeholder:text-slate-300"
         />
         <button
           type="submit"
-          class="border border-slate-200 bg-yellow-300 text-slate-800 text-sm px-1"
+          class="border border-slate-200 bg-black text-slate-200 text-sm py-1 px-1"
         >
           Search
         </button>
@@ -70,4 +70,3 @@
         hx-get="/latest-posts-with-img"
         hx-target="this"
         hx-swap="innerHTML" -->
-

@@ -11,24 +11,23 @@
   </head>
   <body>
     {{template "header" .Index}}
-    <main>
+    <main class="flex flex-col">
       <!--TITLE-->
       <h2 class="text-white text-2xl font-bold text-center">
         {{.Index.Title}}
       </h2>
-      <div
-        class="flex justify-between alignbetween align-middle w-full text-white text-sm"
-      >
-        <!--LOCATION-->
-        <p>
-          {{if .Post.Location}} {{.Post.Location}} {{else}} No location
-          specified {{end}}
-        </p>
-        <p>{{.Post.Username}}</p>
-      </div>
 
-      <!--IMAGES-->
-      <div class="relative md:w-1/2 mx-auto">
+      <div class="relative mx-auto">
+        <div class="flex justify-around align-middle text-white text-sm">
+          <!--LOCATION-->
+          <p>
+            {{if .Post.Location}} {{.Post.Location}} {{else}} No location
+            specified {{end}}
+          </p>
+          <p>Posted by {{.Post.Username}}</p>
+        </div>
+
+        <!--IMAGES-->
         {{with index .Images 0}}
         <img
           id="mainImage"
@@ -46,43 +45,43 @@
           />
           {{end}}
         </div>
-      </div>
 
-      <!-- COMMENT SECTION -->
-      <div class="relative mt-6 md:max-w-2/3">
-        <!-- Comment Form -->
-        {{if .Index.IsLoggedIn}}
-        <form
-          hx-post="/submit-comment/{{.Post.ID}}"
-          hx-swap="beforeend"
-          hx-target="#comments"
-          class="mb-4"
-        >
-          <textarea
-            name="content"
-            required
-            rows="3"
-            placeholder="Write a comment"
-            class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          ></textarea>
-          <button
-            type="submit"
-            class="mt-2 px-3 py-2 bg-slate-500 text-white rounded-sm hover:bg-cyan-300 hover:text-slate-500 cursor-pointer"
+        <!-- COMMENT SECTION -->
+        <div class="relative mx-auto">
+          <!-- Comment Form -->
+          {{if .Index.IsLoggedIn}}
+          <form
+            hx-post="/submit-comment/{{.Post.ID}}"
+            hx-swap="beforeend"
+            hx-target="#comments"
+            class="my-4"
           >
-            Post Comment
-          </button>
-        </form>
-        {{end}}
+            <textarea
+              name="content"
+              required
+              rows="3"
+              placeholder="Write a comment"
+              class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            ></textarea>
+            <button
+              type="submit"
+              class="mt-2 px-3 py-2 bg-slate-500 text-white rounded-sm hover:bg-cyan-300 hover:text-slate-500 cursor-pointer"
+            >
+              Post Comment
+            </button>
+          </form>
+          {{end}}
 
-        <!-- Comments Container -->
-        <div
-          id="comments"
-          hx-get="/get-post-comments/{{.Post.ID}}"
-          hx-trigger="load"
-          hx-swap="innerHTML"
-          class="space-y-4 text-slate-50 p-4"
-        >
-          <!-- Comments will be loaded here -->
+          <!-- Comments Container -->
+          <div
+            id="comments"
+            hx-get="/get-post-comments/{{.Post.ID}}"
+            hx-trigger="load"
+            hx-swap="innerHTML"
+            class="space-y-4 text-slate-50"
+          >
+            <!-- Comments will be loaded here -->
+          </div>
         </div>
       </div>
     </main>

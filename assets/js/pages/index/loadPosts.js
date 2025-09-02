@@ -13,8 +13,8 @@ function loadPosts(state) {
   state.isLoading = true;
   document.querySelector("#loader").classList.remove("hidden");
   const url = q
-    ? `/search?q=${encodeURIComponent(q)}&page=${state.page}`
-    : `/latest-posts-with-img/${state.page}`;
+    ? `/search-posts-with-img?q=${encodeURIComponent(q)}&page=${state.page}`
+    : `/posts-with-img/${state.page}`;
 
   fetch(url)
     .then((response) => {
@@ -35,6 +35,7 @@ function loadPosts(state) {
         },
       });
       container.dispatchEvent(event);
+
       state.page++;
       state.isLoading = false;
       document.querySelector("#loader").classList.add("hidden");

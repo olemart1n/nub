@@ -38,6 +38,8 @@ func AuthSignOut(db *db.DB, tpl *template.Template) http.HandlerFunc {
 		})
 
 		//http.Redirect(w, r, "/", http.StatusSeeOther)
+		w.Header().Set("HX-Trigger", `{"notify": "Signed out successfully"}`)
+
 		w.Header().Set("HX-Redirect", "/")
 	}
 }

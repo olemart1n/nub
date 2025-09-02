@@ -1,25 +1,31 @@
 {{define "header"}}
 
 <header class="z-50">
-  <nav class="text-yellow-500 flex w-full relative justify-between">
-    <a href="/">Nub Global</a>
+  <nav class="flex w-full relative justify-between">
+    <a
+      href="/"
+      class="text-black dark:text-yellow-500 hover:bg-yellow-100 block my-auto"
+      >www.nub.global</a
+    >
 
     <button
       id="menu-toggler"
       class="flex flex-col justify-center z-30 items-center min-w-8 min-h-10 space-y-1 cursor-pointer"
     >
       <span
-        class="block w-6 h-0.5 bg-slate-200 transition-transform duration-300 group-hover:translate-x-1"
+        class="block w-6 h-0.5 bg-slate-950 dark:bg-slate-200 transition-transform duration-300 group-hover:translate-x-1"
       ></span>
       <span
-        class="block w-6 h-0.5 bg-slate-200 transition-transform duration-300 group-hover:translate-x-2"
+        class="block w-6 h-0.5 bg-slate-950 dark:bg-slate-200 transition-transform duration-300 group-hover:translate-x-2"
       ></span>
       <span
-        class="block w-6 h-0.5 bg-slate-200 transition-transform duration-300 group-hover:translate-x-3"
+        class="block w-6 h-0.5 bg-slate-950 dark:bg-slate-200 transition-transform duration-300 group-hover:translate-x-3"
       ></span>
     </button>
 
-    <div class="fixed -right-1/4 h-full w-1/2 text-white">
+    <div
+      class="fixed sm:-right-1/4 -right-1/2 h-full w-full sm:w-1/2 text-white"
+    >
       <div
         id="menu"
         class="relative flex h-full w-1/2 gap-y-3 z-10 py-10 transform flex-col bg-slate-800/[.6] duration-300 ease-in-out translate-x-full"
@@ -72,4 +78,3 @@
   </nav>
 </header>
 {{end}}
-
