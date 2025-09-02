@@ -1,0 +1,51 @@
+{{define "posts-with-img"}} {{ range .}}
+<a
+  href="/post/{{ .Post.ID }}"
+  class="relative block rounded shadow-lg hover:shadow-xl transition-shadow duration-200 w-full aspect-square border border-slate-800 hover:border-slate-600"
+>
+  {{ if gt .ImageCount 1 }}
+  <!-- overlay in bottom-right -->
+  <div
+    class="absolute bottom-0.5 right-1 bg-yellow-200/60 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1"
+  >
+    <!-- You could replace with an SVG icon for images -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-4 h-4 z-10"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 16l4-4a3 3 0 014 0l4 4m-6-6l2-2a3 3 0 014 0l4 4M2 20h20"
+      />
+    </svg>
+    <span>{{ .ImageCount }}</span>
+  </div>
+  {{ end }}
+  <div class="aspect-square rounded-sm overflow-hidden relative flex flex-col">
+    <div class="flex justify-between items-center">
+      <h4 class="p-1 text-center truncate w-36 block">{{.Post.Title}}</h4>
+      {{if .Post.Location }}
+      <span
+        class="bg-yellow-700 text-sm text-slate-200 p-1 inline z-10 py-0 outline-0.5"
+        >{{.Post.Location}}</span
+      >
+      {{else}}{{end}}
+    </div>
+
+    <img
+      src="{{ .Image.ImageURL }}"
+      alt="Image"
+      class="object-cover flex-1 w-full h-3/4 transition-transform duration-200 animate-pulse"
+      loading="lazy"
+    />
+    <p class="italic text-start text-slate-400 p-1 text-sm">
+      Posted: {{.Post.CreatedAt | humanDate}}
+    </p>
+  </div>
+</a>
+{{ end }} {{end}}

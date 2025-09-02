@@ -5,10 +5,10 @@
     <title>Signup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/assets/css/output.css" />
-    
+
     <link rel="icon" href="data:," />
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
-    <script src="/assets/js/sign-up.js"></script>
+    <script src="/assets/js/pages/sign-up/index.js"></script>
   </head>
   <body>
     {{template "header" .}}
@@ -26,9 +26,7 @@
             type="email"
             name="email"
             required
-            class="px-3 py-2 border border-slate-700 rounded text-gray-50 
-            bg-black text-base focus:outline-none focus:border-yellow-400 
-            focus:ring-2 focus:ring-yellow-400/40"
+            class="px-3 py-2 border border-slate-700 rounded text-gray-50 bg-black text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40"
           />
         </div>
         <div class="mb-5 flex flex-col">
@@ -36,9 +34,9 @@
           <input
             type="text"
             name="username"
+            maxlength="20"
             required
-            class="px-3 py-2 border border-slate-700 rounded text-gray-50 
-            bg-black text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40"
+            class="px-3 py-2 border border-slate-700 rounded text-gray-50 bg-black text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40"
           />
         </div>
 
@@ -48,17 +46,14 @@
             type="password"
             name="password"
             required
-            class="px-3 py-2 border border-slate-700 rounded text-gray-50 
-            bg-black text-base focus:outline-none focus:border-yellow-400 
-            focus:ring-2 focus:ring-yellow-400/40"
+            class="px-3 py-2 border border-slate-700 rounded text-gray-50 bg-black text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40"
           />
         </div>
 
         <button
           type="submit"
           type="submit"
-          class="w-full py-3 bg-yellow-400 text-slate-800 font-semibold text-base 
-          rounded-sm cursor-pointer transition-colors duration-200 hover:bg-yellow-500"
+          class="w-full py-3 bg-yellow-400 text-slate-800 font-semibold text-base rounded-sm cursor-pointer transition-colors duration-200 hover:bg-yellow-500"
         >
           Sign Up
         </button>
@@ -69,6 +64,5 @@
     <footer>
       <p>© Nub Global — Preserving the Past</p>
     </footer>
-    
   </body>
 </html>

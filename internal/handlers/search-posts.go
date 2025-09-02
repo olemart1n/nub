@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/olemart1n/nub/internal/db"
+	contextkeys "github.com/olemart1n/nub/internal/handlers/context-keys"
 )
 
 func SearchPosts(DB *db.DB, tpl *template.Template) http.HandlerFunc {
@@ -28,11 +29,29 @@ func SearchPosts(DB *db.DB, tpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		// Render only the posts gallery partial
-		err = tpl.ExecuteTemplate(w, "latest-posts-with-img.html", posts)
-		if err != nil {
-			log.Println("Template execution error:", err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+		if r.Header.Get("HX-Request") == "true" {
+			// Render only the posts gallery partial
+			err = tpl.ExecuteTemplate(w, "posts-with-img", posts)
+			if err != nil {
+				log.Println("Template execution error:", err)
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			}
+		} else {
+
+			data := TemplateDataIndex{
+				Title:      q,
+				UserID:     r.Context().Value(contextkeys.UserIDKey).(string),
+				IsLoggedIn: r.Context().Value(contextkeys.IsLoggedInKey).(bool),
+				Query:      r.URL.Query().Get("q"),
+				Posts:      posts,
+			}
+
+			err := tpl.ExecuteTemplate(w, "index.html", data)
+			if err != nil {
+				log.Println("Template execution error:", err)
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
 		}
 	}
 }

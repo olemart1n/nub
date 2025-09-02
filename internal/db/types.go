@@ -2,6 +2,7 @@
 package db
 
 import (
+	"database/sql"
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -15,7 +16,7 @@ type User struct {
 	ID        int
 	Username  string
 	CreatedAt time.Time
-	Email     *string // Could add email logic later.
+	Email     sql.NullString
 }
 
 type Post struct {
@@ -24,6 +25,7 @@ type Post struct {
 	Title     string
 	Location  string
 	CreatedAt time.Time
+	Username  string
 }
 
 type Image struct {

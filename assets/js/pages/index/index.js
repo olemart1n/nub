@@ -13,11 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const q = params.get("q");
 
   if (q) {
-    window.htmx.ajax("GET", `/search?q=${encodeURIComponent(q)}`, {
-      target: "#posts-gallery",
-    });
+    window.htmx.ajax(
+      "GET",
+      `/search-posts-with-img?q=${encodeURIComponent(q)}`,
+      {
+        target: "#posts-gallery",
+      },
+    );
   } else {
-    window.htmx.ajax("GET", "/latest-posts-with-img/" + pageState.page, {
+    window.htmx.ajax("GET", "/posts-with-img/" + pageState.page, {
       target: "#posts-gallery",
     });
   }

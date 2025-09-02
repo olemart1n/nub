@@ -17,8 +17,11 @@ func Router(db *db.DB, tpl *template.Template, envConfig config.EnvConfig) *mux.
 	r := mux.NewRouter()
 
 	// All users have access but shows different UI based on authentication
+	// INDEX
 	r.Handle("/", middleware.WithUserContext(ViewIndex(tpl))).Methods("GET")
 
+	// PROFILE
+	r.Handle("/profile", middleware.WithUserContext(ViewProfile(tpl, db))).Methods("GET")
 	// view POST page and serve related partials
 	r.Handle("/post/{id}", middleware.WithUserContext(ViewPost(tpl, db))).Methods("GET")
 	r.Handle("/get-post-comments/{id}", PartialComments(db, tpl))
@@ -39,9 +42,9 @@ func Router(db *db.DB, tpl *template.Template, envConfig config.EnvConfig) *mux.
 	r.Handle("/sign-handler", bunny.SignHandler(envConfig)).Methods("GET")
 
 	// SERVE REQUESTED PARTIALS
-	r.Handle("/latest-posts-with-img/{pageNumber}", PartialLatestPostsWithImg(db, tpl))
+	r.Handle("/posts-with-img/{pageNumber}", PartialPostsWithImg(db, tpl))
 	// .. SEARCH
-	r.Handle("/search", SearchPosts(db, tpl))
+	r.Handle("/search-posts-with-img", middleware.WithUserContext(SearchPosts(db, tpl)))
 
 	// CREATE POST
 	r.Handle("/upload", middleware.AuthenticationRequired(ViewUpload(tpl))).Methods("GET")

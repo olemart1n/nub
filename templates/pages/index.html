@@ -19,7 +19,7 @@
       <form
         action="/"
         method="get"
-        hx-get="/search"
+        hx-get="/search-posts-with-img"
         hx-target="#posts-gallery"
         hx-push-url="true"
         class="my-2"
@@ -43,7 +43,9 @@
         id="posts-gallery"
         class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full"
       >
-        {{template "loader"}}
+        <!-- The data will contain posts if this is shared search url -->
+        {{if .Posts}} {{template "posts-with-img" .Posts}} {{else}} {{template
+        "loader"}} {{end}}
       </div>
       <div class="h-20 w-full p-2 text-center text-black">
         <button

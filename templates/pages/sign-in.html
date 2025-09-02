@@ -8,7 +8,7 @@
     <link rel="icon" href="data:," />
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
 
-    <script src="/assets/js/sign-in.js" defer></script>
+    <script src="/assets/js/pages/sign-in/index.js" defer></script>
   </head>
   <body>
     {{template "header" .}}
@@ -17,7 +17,7 @@
       <form
         class="p-8 rounded-sm w-full max-w-xs"
         hx-post="/sign-in"
-        hx-target="#notification"
+        hx-target="#ui-message"
         hx-swap="innerHTML"
       >
         <div class="mb-5 flex flex-col">
@@ -46,7 +46,7 @@
         >
           Sign in
         </button>
-        <div class="my-2" id="notification"></div>
+        <div class="my-2" id="ui-message"></div>
 
         <a
           href="/sign-up"

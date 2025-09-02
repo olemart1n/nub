@@ -18,6 +18,7 @@ type TemplateDataIndex struct {
 	UserID     string
 	Title      string
 	Query      string
+	Posts      []db.PostWithImg
 }
 
 type TemplateDataPost struct {
@@ -29,4 +30,11 @@ type TemplateDataPost struct {
 type TemplateDataUpload struct {
 	Index     TemplateDataIndex
 	Countries []string
+}
+type TemplateDataProfile struct {
+	UserID     string
+	Title      string
+	Username   string
+	Email      string
+	IsLoggedIn bool
 }
