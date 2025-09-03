@@ -22,7 +22,9 @@ func Router(db *db.DB, tpl *template.Template, envConfig config.EnvConfig) *mux.
 
 	// PROFILE
 	r.Handle("/profile", middleware.WithUserContext(ViewProfile(tpl, db))).Methods("GET")
-	// view POST page and serve related partials
+	r.Handle("/get-authored-posts", middleware.WithUserContext(PartialAuthoredPosts(tpl, db))).Methods("GET")
+
+	// view POST page and serve related partial tpl *template.Templates
 	r.Handle("/post/{id}", middleware.WithUserContext(ViewPost(tpl, db))).Methods("GET")
 	r.Handle("/get-post-comments/{id}", PartialComments(db, tpl))
 	r.Handle("/submit-comment/{id}", middleware.AuthenticationRequired(FormSubmitComment(db, tpl)))
@@ -50,6 +52,9 @@ func Router(db *db.DB, tpl *template.Template, envConfig config.EnvConfig) *mux.
 	r.Handle("/upload", middleware.AuthenticationRequired(ViewUpload(tpl))).Methods("GET")
 	r.Handle("/create-post", middleware.AuthenticationRequired(bunny.UploadImages(envConfig, FormCreatePost(db, tpl)))).Methods("POST")
 
+	// DELETE POST
+	r.Handle("/upload", middleware.AuthenticationRequired(ViewUpload(tpl))).Methods("GET")
+	r.Handle("/delete-post/{id}", middleware.AuthenticationRequired(DeletePost(db))).Methods("GET")
 	// Serve static files at /static/
 	staticFileDirectory := http.Dir("assets/")
 	staticFileHandler := http.StripPrefix("/assets/", http.FileServer(staticFileDirectory))

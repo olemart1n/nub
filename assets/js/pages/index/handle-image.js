@@ -1,11 +1,11 @@
 function handleImage(img) {
   // If image is already loaded (from cache or fast connection)
   if (img.complete && img.naturalHeight !== 0) {
-    img.classList.remove("animate-pulse");
+    img.parentElement.classList.remove("animate-pulse");
   } else {
     // Wait for it to load
     img.addEventListener("load", () => {
-      img.classList.remove("animate-pulse");
+      img.parentElement.classList.remove("animate-pulse");
     });
   }
 }
