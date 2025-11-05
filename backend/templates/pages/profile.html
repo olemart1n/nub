@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ .Title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/output.css" />
+    <link rel="icon" href="data:," />
+    <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
+    <script src="/assets/js/menu.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    {{template "header" .}}
+
+    <main class="p-2 dark:text-slate-200 text-slate-900">
+      <h1 class="text-3xl font-bold mb-6">{{ .Username }}</h1>
+      <!-- User Info Card -->
+      <div
+        class="shadow-md text-xl font-thin rounded-sm p-6 mb-8 border border-slate-50"
+      >
+        <h2 class="border-b">Username: {{ .Username }}</h2>
+        <form class="flex items-center justify-between gap-2 border-b">
+          <label for="email" class="text-md">Email: </label>
+          <input
+            type="email"
+            name="email"
+            class="px-3 py-2 border border-slate-700 rounded text-gray-50 bg-black text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40"
+            value="{{.Email}}"
+          />
+          <button type="click"><i class="fa fa-edit"></i></button>
+        </form>
+        <h3 class="text-sm border-b">User ID: {{ .UserID }}</p>
+      </div>
+
+      <!-- Posts Section -->
+      <div>
+        <h3 class="text-xl font-semibold text-slate-200 mb-4">Uploads</h3>
+        <div           
+          hx-get="/get-authored-posts"
+          hx-trigger="load"
+          hx-target="this"
+          hx-swap="beforeend"
+          id="user-posts" 
+          class="flex flex-col gap-4 md:w-3xl w-full p-3">
+          <!-- HTMX will inject posts here -->
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© Nub Global — Preserving the Past</p>
+    </footer>
+  </body>
+</html>

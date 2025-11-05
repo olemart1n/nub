@@ -1,0 +1,43 @@
+{{define "filter-options"}}
+<div class="flex">
+  <div class="flex flex-wrap">
+    <form class="flex w-fit px-2 py-1 text-slate-100 mb-2">
+      <label for="keywords" class="text-slate-400 mr-auto">Keyword:</label>
+      <select
+        name="keywords"
+        id="keywords"
+        class="px-2 border-slate-600 border-b"
+      >
+        <option value="empty">select</option>
+        {{range .Keywords}}
+        <option value="{{.}}">{{.}}</option>
+        {{end}}
+      </select>
+    </form>
+    <div id="selected-keywords"></div>
+  </div>
+
+  <form
+    action="/"
+    method="get"
+    hx-get="/search-posts-with-img"
+    hx-target="#posts-gallery"
+    hx-push-url="true"
+    class="my-2"
+  >
+    <input
+      type="text"
+      name="q"
+      placeholder="Peru + nubs ..."
+      value="{{.Query}}"
+      class="border bg-black border-slate-200 placeholder:text-slate-300"
+    />
+    <button
+      type="submit"
+      class="border border-slate-200 bg-black text-slate-200 text-sm py-1 px-1"
+    >
+      Search
+    </button>
+  </form>
+</div>
+{{end}}

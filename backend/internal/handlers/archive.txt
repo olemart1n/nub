@@ -1,0 +1,36 @@
+		
+        DETTE ER KODE FOR TAGS ON KAN LEGGES TIL SENERE..
+        
+        // http.Redirect(w, r, "/post/"+strconv.Itoa(postID), http.StatusSeeOther)
+        // tagsJSON := r.FormValue("tags")
+
+		// if tagsJSON == "" {
+		// 	fmt.Println("tagsJSON is empty")
+		// 	http.Error(w, "Tags field is required", http.StatusBadRequest)
+		// 	return
+		// }
+		var tags []string
+		// err := json.Unmarshal([]byte(tagsJSON), &tags)
+		// if err != nil {
+		// 	fmt.Print(err)
+		// 	http.Error(w, "Invalid tags format", http.StatusBadRequest)
+		// 	return
+		// }
+
+
+
+
+
+
+
+
+
+		<div id="notification" class="{{if .Error}}error{{else}}success{{end}}">
+  {{.Message}}
+</div>
+
+<script>
+  setTimeout(() => {
+    window.location.href = "/login";
+  }, 2000);
+</script>

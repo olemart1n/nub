@@ -1,8 +1,0 @@
-{
-  "build": {
-    "cmd": "go build -o /app/out ./cmd/main.go && ls -la /app"
-  },
-  "start": {
-    "cmd": "/app/out"
-  }
-}

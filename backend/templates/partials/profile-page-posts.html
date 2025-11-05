@@ -1,0 +1,29 @@
+{{define "profile-page-post"}}
+<div class="flex p-2 w-full bg-gray-300 items-center text-black justify-around">
+  <h2>{{.Title}}</h2>
+  <div>
+    <button
+      type="click"
+      class="bg-yellow-200 p-1 cursor-pointer hover:bg-yellow-300 hover:outline"
+    >
+      Edit
+    </button>
+    <button
+      type="click"
+      class="bg-red-300 p-1 cursor-pointer hover:bg-red-400 hover:outline"
+      hx-trigger="click"
+      hx-get="/delete-post/{{.ID}}"
+      hx-target="closest div.flex"
+      hx-swap="innerHTML"
+    >
+      Delete
+    </button>
+    <a
+      href="/post/{{.ID}}"
+      class="p-1 cursor-pointer hover:bg-slate-200 hover:outline"
+      >View</a
+    >
+  </div>
+</div>
+{{end}} {{define "profile-page-posts"}} {{ range . }} {{ template
+"profile-page-post" . }} {{end}} {{end}}

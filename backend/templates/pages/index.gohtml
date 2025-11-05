@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ .Title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/output.css" />
+    <link rel="icon" href="data:," />
+    <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/pages/index/index.js" type="module" defer></script>
+    <!--Slim select-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.13.1/slimselect.global.min.js" integrity="sha512-unlykDh+YHFXm2O1sBTqJj4AfUHR7aj/X98Kl/AK8iRhssd5TG8NAJQDIwBrxygUgpLjxZrk5D8KL88bmsFQVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.13.1/slimselect.min.css" integrity="sha512-SfzwlVvWZrs8vawuFIIhjeCF8opltVLg96Wzfgr+hVF4jBT1qaOf6I/gYl9P4ZbQgDxRLjJBwUpypQoaGCxuOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    {{template "header" .}}
+
+    <main class="p-2">
+      <h1 class="my-3 sr-only">Below is the latest uploads..</h1>
+
+      {{template "filter-options" .}}
+      <div
+        id="posts-gallery"
+        class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full"
+      >
+        <!-- The data will contain posts if this is shared search url -->
+        {{if .Posts}} {{template "posts-with-img" .Posts}} {{else}} {{template
+        "loader"}} {{end}}
+      </div>
+      <div class="h-20 w-full p-2 text-center text-black">
+        <button
+          type="click"
+          class="bg-yellow-300 p-1 text-sm cursor-pointer"
+          id="load-more-posts-btn"
+        >
+          See more posts
+        </button>
+        {{template "loader"}}
+      </div>
+    </main>
+
+    <footer>
+      <p>© Nub Global — Preserving the Past</p>
+    </footer>
+  </body>
+</html>
