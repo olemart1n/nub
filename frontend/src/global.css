@@ -1,0 +1,32 @@
+@import "tailwindcss";
+:root {
+  color-scheme: light dark;
+  --blue-color: #395487;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.wave-animation::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(108, 113, 120, 0.3),
+    transparent
+  );
+  animation: wave 1.5s linear infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
