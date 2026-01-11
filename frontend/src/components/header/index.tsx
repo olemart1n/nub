@@ -33,7 +33,7 @@ export const Header = component$(() => {
         </button>
 
         <div
-          class="fixed sm:-right-1/4 -right-1/2 h-full w-full sm:w-1/2 text-white"
+          class="fixed sm:-right-1/4 -right-1/2 h-screen w-full sm:w-1/2 text-white"
         >
 
           <div

@@ -1,0 +1,2 @@
+// SERVE REQUESTED PARTIALS
+	r.Handle("/posts-with-img/{pageNumber}", PartialPostsWithImg(db, tpl))

@@ -28,6 +28,11 @@ type TemplateDataPost struct {
 	Post   db.Post
 }
 
+type Post struct {
+	Post   db.Post    `json:"post"`
+	Images []db.Image `json:"images"`
+}
+
 type TemplateDataUpload struct {
 	Index     TemplateDataIndex
 	Countries []string

@@ -10,7 +10,7 @@ func (db *DB) GetLatestImages(ctx context.Context, page int) ([]Image, error) {
 	const pageSize = 12
 	offset := page * pageSize
 
-	query := `SELECT image_url, post_id FROM images ORDER BY id DESC LIMIT $1 OFFSET $2`
+	query := `SELECT image_url, post_id, created_at, country FROM images ORDER BY id DESC LIMIT $1 OFFSET $2`
 
 	rows, err := db.Pool.Query(ctx, query, pageSize, offset)
 	if err != nil {
@@ -22,7 +22,7 @@ func (db *DB) GetLatestImages(ctx context.Context, page int) ([]Image, error) {
 
 	for rows.Next() {
 		var i Image
-		err := rows.Scan(&i.ImageURL, &i.PostID)
+		err := rows.Scan(&i.ImageURL, &i.PostID, &i.CreatedAt, &i.Country)
 		if err != nil {
 			fmt.Print("some error happened")
 			return nil, err

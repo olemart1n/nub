@@ -1,4 +1,4 @@
-import { $, component$, useOnDocument, useSignal, useStore } from "@builder.io/qwik";
+import { $, component$, useOnDocument, useStore } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { Post1, type Post1Type } from "~/components/post-1";
 
@@ -6,19 +6,19 @@ export default component$(() => {
 
   const store = useStore<Post1Type[]>([])
 
-
   useOnDocument("DOMContentLoaded", $(async () => {
 
-    const req = await fetch(import.meta.env.PUBLIC_SERVER_URL + "/get-latest-images/0")
+    const req = await fetch(import.meta.env.PUBLIC_SERVER_URL + "/latest-images/0")
     const res = await req.json()
-    res.forEach((post: any) => (
+    console.log(res)
+    res.forEach((post: Post1Type) => (
 
       store.push({
-        id: post.ID.toString(),
-        postId: post.PostID.toString(),
-        country: post.Country,
-        createdAt: post.CreatedAt,
-        imageURL: post.ImageURL,
+        id: post.id.toString(),
+        postId: post.postId.toString(),
+        country: post.country,
+        createdAt: post.createdAt,
+        imageUrl: post.imageUrl,
       })
     ));
   }))
@@ -32,7 +32,7 @@ export default component$(() => {
         class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full"
       >
         {store.map((image) => {
-          return <Post1 id={image.id} postId={image.postId} createdAt={image.createdAt} country={image.country} imageURL={image.imageURL} />
+          return <Post1 id={image.id} postId={image.postId} createdAt={image.createdAt} country={image.country} imageUrl={image.imageUrl} />
         })}
 
       </div>

@@ -16,16 +16,20 @@ func Router(db *db.DB, tpl *template.Template, envConfig config.EnvConfig) *mux.
 
 	r := mux.NewRouter()
 
-	// All users have access but shows different UI based on authentication
-	// INDEX
-	r.Handle("/", middleware.WithUserContext(ViewIndex(tpl))).Methods("GET")
+	r.Handle("/posts/{pageNumber}", middleware.CorsPolicy(GetPosts(db))).Methods("GET") // NOT IN USE
+
+	r.Handle("/image-with-delay", middleware.CorsPolicy(DelayedImage(db))).Methods("GET") // FOR TESTING LOADERS
+
+	r.Handle("/latest-images/{pageNumber}", middleware.CorsPolicy(GetLatestImages(db))).Methods("GET")
+
+	r.Handle("/post/{id}", middleware.CorsPolicy(GetPost(tpl, db))).Methods("GET")
+	// -- CODE BELOW IS NOT IN USE
 
 	// PROFILE
 	r.Handle("/profile", middleware.WithUserContext(ViewProfile(tpl, db))).Methods("GET")
 	r.Handle("/get-authored-posts", middleware.WithUserContext(PartialAuthoredPosts(tpl, db))).Methods("GET")
 
 	// view POST page and serve related partial tpl *template.Templates
-	r.Handle("/post/{id}", middleware.WithUserContext(ViewPost(tpl, db))).Methods("GET")
 	r.Handle("/get-post-comments/{id}", PartialComments(db, tpl))
 	r.Handle("/submit-comment/{id}", middleware.AuthenticationRequired(FormSubmitComment(db, tpl)))
 
@@ -43,8 +47,6 @@ func Router(db *db.DB, tpl *template.Template, envConfig config.EnvConfig) *mux.
 	// FOR BUNNY UPLOAD. NOT IN USE
 	r.Handle("/sign-handler", bunny.SignHandler(envConfig)).Methods("GET")
 
-	// SERVE REQUESTED PARTIALS
-	r.Handle("/posts-with-img/{pageNumber}", PartialPostsWithImg(db, tpl))
 	// .. SEARCH
 	r.Handle("/search-posts-with-img", middleware.WithUserContext(SearchPosts(db, tpl)))
 
